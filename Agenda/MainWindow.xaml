@@ -1,0 +1,40 @@
+﻿<Window x:Class="Agenda.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Agenda"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="1" Click="Button_Click">Insertar contacto</Button>
+        <TextBlock Grid.Row="1" Grid.Column="1">Nombre</TextBlock>
+        <TextBox x:Name="nombre" Grid.Row="1" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="1">Apellidos</TextBlock>
+        <TextBox x:Name="apellidos" Grid.Row="2" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="1">Comentario</TextBlock>
+        <TextBox x:Name="comentario" Grid.Row="3" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="1">Telefono</TextBlock>
+        <TextBox x:Name="telefono" Grid.Row="4" Grid.Column="2"></TextBox>
+        <TextBlock Grid.Row="5" Grid.Column="1">Email</TextBlock>
+        <TextBox x:Name="email"  Grid.Row="5" Grid.Column="2"></TextBox>
+    </Grid>
+</Window>
