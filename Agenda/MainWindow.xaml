@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -25,16 +25,16 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Grid.Column="1" Click="Button_Click">Insertar contacto</Button>
-        <TextBlock Grid.Row="1" Grid.Column="1">Nombre</TextBlock>
-        <TextBox x:Name="nombre" Grid.Row="1" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="1">Apellidos</TextBlock>
-        <TextBox x:Name="apellidos" Grid.Row="2" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="1">Comentario</TextBlock>
-        <TextBox x:Name="comentario" Grid.Row="3" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="4" Grid.Column="1">Telefono</TextBlock>
-        <TextBox x:Name="telefono" Grid.Row="4" Grid.Column="2"></TextBox>
-        <TextBlock Grid.Row="5" Grid.Column="1">Email</TextBlock>
-        <TextBox x:Name="email"  Grid.Row="5" Grid.Column="2"></TextBox>
+        <Button Grid.Row="1" Grid.Column="6" Click="Button_Click">Insertar contacto</Button>
+        <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
+        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
+        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <TextBlock x:Name="lbltelefono" Grid.Row="0" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Telefono:</TextBlock>
+        <TextBox x:Name="txttelefono" Grid.Row="0" Grid.Column="4"></TextBox>
+        <TextBlock x:Name="lblemail" Grid.Row="1" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Email:</TextBlock>
+        <TextBox x:Name="txtemail"  Grid.Row="1" Grid.Column="4"></TextBox>
+        <TextBlock x:Name="lblcomentario" Grid.Row="0" Grid.Column="5" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
+        <TextBox x:Name="txtcomentario" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2"></TextBox>
     </Grid>
 </Window>

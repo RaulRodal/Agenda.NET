@@ -36,9 +36,9 @@ namespace Agenda
 
             using (SqlCommand command = new SqlCommand(sqlInsertContactos, mConexion.getConexion()))
             {
-                command.Parameters.AddWithValue("@Nombre", nombre.Text);
-                command.Parameters.AddWithValue("@Apellidos", apellidos.Text);
-                command.Parameters.AddWithValue("@Comentario", comentario.Text);
+                command.Parameters.AddWithValue("@Nombre", txtnombre.Text);
+                command.Parameters.AddWithValue("@Apellidos", txtapellidos.Text);
+                command.Parameters.AddWithValue("@Comentario", txtcomentario.Text);
 
                 command.ExecuteNonQuery();
             }
@@ -52,7 +52,7 @@ namespace Agenda
                 using (SqlCommand command = new SqlCommand(sqlInsertTelefono, mConexion.getConexion()))
                 {
                     command.Parameters.AddWithValue("@ID_Contacto", ultimoId);
-                    command.Parameters.AddWithValue("@Telefono", telefono.Text);
+                    command.Parameters.AddWithValue("@Telefono", txttelefono.Text);
 
                     command.ExecuteNonQuery();
                 }
@@ -60,7 +60,7 @@ namespace Agenda
                 using (SqlCommand command = new SqlCommand(sqlInsertCorreo, mConexion.getConexion()))
                 {
                     command.Parameters.AddWithValue("@ID_Contacto", ultimoId);
-                    command.Parameters.AddWithValue("@Correo", email.Text);
+                    command.Parameters.AddWithValue("@Correo", txtemail.Text);
 
                     command.ExecuteNonQuery();
                 }
