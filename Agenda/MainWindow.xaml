@@ -10,31 +10,46 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Grid.Column="6" Click="Button_Click">Insertar contacto</Button>
-        <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
-        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-        <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
-        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-        <TextBlock x:Name="lbltelefono" Grid.Row="0" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Telefono:</TextBlock>
-        <TextBox x:Name="txttelefono" Grid.Row="0" Grid.Column="4"></TextBox>
-        <TextBlock x:Name="lblemail" Grid.Row="1" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Email:</TextBlock>
-        <TextBox x:Name="txtemail"  Grid.Row="1" Grid.Column="4"></TextBox>
-        <TextBlock x:Name="lblcomentario" Grid.Row="0" Grid.Column="5" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
-        <TextBox x:Name="txtcomentario" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2"></TextBox>
+        <Button Grid.Column="0" Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click">Nuevo</Button>
+        <Button Grid.Column="1" Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Refrescar">Refrescar</Button>
+        <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Apellidos" Width="150" Binding="{Binding Apellidos}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Comentario" Width="250" Binding="{Binding Comentario}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Editar">Telefonos</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="70"  CommandParameter="{Binding IdContacto}" Click="Button_Editar">Correos</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Editar">Editar</Button>
+
+                                <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Delete">Eliminar</Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </Window>

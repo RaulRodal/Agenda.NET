@@ -19,7 +19,7 @@ CREATE TABLE Telefonos (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     ID_Contacto INT,
     Telefono VARCHAR(15),
-    FOREIGN KEY (ID_Contacto) REFERENCES Contactos(ID)
+    FOREIGN KEY (ID_Contacto) REFERENCES Contactos(ID) ON DELETE CASCADE
 );
 
 -- Crear la tabla de emails
@@ -27,5 +27,5 @@ CREATE TABLE Correos (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     ID_Contacto INT,
     Correo VARCHAR(100),
-    FOREIGN KEY (ID_Contacto) REFERENCES Contactos(ID)
+    FOREIGN KEY (ID_Contacto) REFERENCES Contactos(ID) ON DELETE CASCADE
 );
