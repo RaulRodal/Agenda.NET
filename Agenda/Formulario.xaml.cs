@@ -28,9 +28,6 @@ namespace Agenda
         string sqlConsultaTodos = "select * from dbo.Contactos";
         string sqlConsultaUno = "select * from dbo.Contactos where ID = @IdContacto";
         string sqlInsertContactos = "INSERT INTO dbo.Contactos (Nombre, Apellidos, Comentario) VALUES (@Nombre, @Apellidos, @Comentario)";
-        string sqlInsertTelefono = "INSERT INTO dbo.Telefonos (ID_Contacto, Telefono) VALUES (@ID_Contacto, @Telefono)";
-        string sqlInsertCorreo = "INSERT INTO dbo.Correos (ID_Contacto, Correo) VALUES (@ID_Contacto, @Correo)";
-        string sqlMaxId = "SELECT MAX(Id) FROM dbo.Contactos";
         string sqlUpdate = "UPDATE dbo.Contactos SET Nombre= @Nombre, Apellidos = @Apellidos, Comentario = @Comentario WHERE ID = @IdContacto";
 
         public Formulario(int Id = 0)
@@ -91,36 +88,20 @@ namespace Agenda
 
                     command.ExecuteNonQuery();
                 }
-
-                using (SqlCommand commandID = new SqlCommand(sqlMaxId, mConexion.getConexion()))
-                {
-                    int ultimoId = (int)commandID.ExecuteScalar();
-
-                    using (SqlCommand command = new SqlCommand(sqlInsertTelefono, mConexion.getConexion()))
-                    {
-                        command.Parameters.AddWithValue("@ID_Contacto", ultimoId);
-                        command.Parameters.AddWithValue("@Telefono", txttelefono.Text);
-
-                        command.ExecuteNonQuery();
-                    }
-
-                    using (SqlCommand command = new SqlCommand(sqlInsertCorreo, mConexion.getConexion()))
-                    {
-                        command.Parameters.AddWithValue("@ID_Contacto", ultimoId);
-                        command.Parameters.AddWithValue("@Correo", txtemail.Text);
-
-                        command.ExecuteNonQuery();
-                    }
-                }
             }
-
-            this.Close();
-            Owner.Show();
+            Volver();
         }
         private void Cerrar(object sender, CancelEventArgs e)
         {
-            this.Owner.Show();
-
+            Volver();
         }
+
+        private void Volver()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Hide();
+        }
+
     }
 }

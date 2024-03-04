@@ -12,9 +12,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -27,10 +24,6 @@
         <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
         <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
         <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-        <TextBlock x:Name="lbltelefono" Grid.Row="0" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Telefono:</TextBlock>
-        <TextBox x:Name="txttelefono" Grid.Row="0" Grid.Column="4"></TextBox>
-        <TextBlock x:Name="lblemail" Grid.Row="1" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Email:</TextBlock>
-        <TextBox x:Name="txtemail"  Grid.Row="1" Grid.Column="4"></TextBox>
         <TextBlock x:Name="lblcomentario" Grid.Row="2" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
         <TextBox x:Name="txtcomentario" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2"></TextBox>
     </Grid>

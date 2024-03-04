@@ -37,7 +37,7 @@ namespace Agenda
 
         private void Refresh()
         {
-
+            listaContactos.Clear();
             SqlDataReader sqlDataReader = null;
             String consulta = "select * from dbo.Contactos";
 
@@ -55,8 +55,9 @@ namespace Agenda
                     contacto.Apellidos = sqlDataReader.GetString(2);
                     contacto.Comentario = sqlDataReader.GetString(3);
 
-                    listaContactos.Add(contacto);  
+                    listaContactos.Add(contacto);
                 }
+                DG.ItemsSource = null;
                 DG.ItemsSource = listaContactos;
                 sqlDataReader.Close();
             }
@@ -66,9 +67,8 @@ namespace Agenda
         {
             Formulario pFormulario = new Formulario();
             pFormulario.Show();
-            pFormulario.Owner = this;
 
-            this.Hide();
+            this.Close();
         }
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
@@ -82,9 +82,7 @@ namespace Agenda
                 sqlCommand.Connection = mConexion.getConexion();
                 sqlCommand.ExecuteNonQuery();
             }
-
             Refresh();
-
         }
 
         private void Button_Editar(object sender, RoutedEventArgs e)
@@ -93,15 +91,21 @@ namespace Agenda
 
             Formulario pFormulario = new Formulario(Id);
             pFormulario.Show();
-            pFormulario.Owner = this;
 
-            this.Hide();
-
+            this.Close();
         }
 
         private void Button_Refrescar(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            Refresh();  
+        }
+        private void Button_Correos(object sender, RoutedEventArgs e)
+        {
+            int Id = (int)((Button)sender).CommandParameter;
+
+            Correo ventanaCorreos = new Correo(Id);
+            ventanaCorreos.Show();
+            this.Close();
         }
     }
 }

@@ -32,7 +32,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70"  CommandParameter="{Binding IdContacto}" Click="Button_Editar">Correos</Button>
+                            <Button Width="70"  CommandParameter="{Binding IdContacto}" Click="Button_Correos">Correos</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
