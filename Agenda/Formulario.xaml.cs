@@ -39,6 +39,7 @@ namespace Agenda
             if (this.Id != 0)
             {
                 update = true;
+                btn.Content = "Modificar contacto";
                 SqlDataReader sqlDataReader = null;
 
                 if (mConexion.getConexion() != null)

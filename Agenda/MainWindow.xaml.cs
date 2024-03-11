@@ -97,7 +97,7 @@ namespace Agenda
 
         private void Button_Refrescar(object sender, RoutedEventArgs e)
         {
-            Refresh();  
+            Refresh();
         }
         private void Button_Correos(object sender, RoutedEventArgs e)
         {
@@ -105,6 +105,14 @@ namespace Agenda
 
             Correo ventanaCorreos = new Correo(Id);
             ventanaCorreos.Show();
+            this.Close();
+        }
+        private void Button_Telefono(object sender, RoutedEventArgs e)
+        {
+            int Id = (int)((Button)sender).CommandParameter;
+
+            Telefono ventanaTelefonos = new Telefono(Id);
+            ventanaTelefonos.Show();
             this.Close();
         }
     }

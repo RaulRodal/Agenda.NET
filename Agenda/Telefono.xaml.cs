@@ -45,10 +45,26 @@ namespace Agenda
             listaTelefonos.Clear();
             SqlDataReader sqlDataReader = null;
             String consulta = "select * from dbo.Telefonos where ID_Contacto = " + Id;
+            String consultaNombre = "select Nombre from dbo.Contactos where ID = " + Id;
+            String nombreContacto = "";
 
             if (mConexion.getConexion() != null)
             {
-                SqlCommand sqlCommand = new SqlCommand(consulta);
+                //obtener nombre de contacto 
+                SqlCommand sqlCommand = new SqlCommand(consultaNombre);
+                sqlCommand.Connection = mConexion.getConexion();
+                sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                { 
+                    nombreContacto = sqlDataReader.GetString(0);
+                }
+
+                lblNombre.Text = "Telefono/s de " + nombreContacto;
+                sqlDataReader.Close();
+
+                //obtener telefonos
+                sqlCommand = new SqlCommand(consulta);
                 sqlCommand.Connection = mConexion.getConexion();
                 sqlDataReader = sqlCommand.ExecuteReader();
 
@@ -73,7 +89,7 @@ namespace Agenda
             using (SqlCommand command = new SqlCommand(sqlInsertTelefono, mConexion.getConexion()))
             {
                 command.Parameters.AddWithValue("@ID_Contacto", Id);
-                command.Parameters.AddWithValue("@Telefono", txtcorreo.Text);
+                command.Parameters.AddWithValue("@Telefono", txttelefono.Text);
 
                 command.ExecuteNonQuery();
             }

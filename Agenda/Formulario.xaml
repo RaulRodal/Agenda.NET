@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="Formulario" Height="450" Width="800" Closing="Cerrar">
+        Title="Formulario" Height="450" Width="400" Closing="Cerrar" ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,13 +16,14 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Grid.Column="6" Click="Button_Click">Insertar contacto</Button>
         <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
-        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" Width="200"></TextBox>
         <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
-        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="50" Width="200"></TextBox>
         <TextBlock x:Name="lblcomentario" Grid.Row="2" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
-        <TextBox x:Name="txtcomentario" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2"></TextBox>
+        <TextBox x:Name="txtcomentario" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Height="125" Width="200"></TextBox>
+        <Button x:Name="btn" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Height="50" Width="120">Insertar contacto</Button>
     </Grid>
 </Window>

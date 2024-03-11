@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="Correo" Height="450" Width="800" Closing="Cerrar">
+        Title="Correo" Height="450" Width="400" Closing="Cerrar" ResizeMode="NoResize">
     <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
-        <TextBlock x:Name="lblcorreo" Grid.Row="0" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Margin="0,0,10,0">Correo:</TextBlock>
+        <TextBlock x:Name="lblNombre" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
         <TextBox x:Name="txtcorreo" Grid.Row="0" Grid.Column="1" Width="120" HorizontalAlignment="Right"></TextBox>
-        <Button Grid.Row="0" Grid.Column="2" Click="Button_Guardar">Guardar correo</Button>
-        <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
+        <Button Grid.Row="1" Grid.Column="2" Click="Button_Guardar">Guardar correo</Button>
+        <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Correo electrónico" Width="400" Binding="{Binding Correo}"></DataGridTextColumn>
                 <DataGridTemplateColumn>
@@ -33,6 +33,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="2" Grid.Row="2" Click="Button_Volver">Volver</Button>
+        <Button Grid.Column="2" Grid.Row="3" Click="Button_Volver">Volver</Button>
     </Grid>
 </Window>
