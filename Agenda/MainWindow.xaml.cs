@@ -26,6 +26,10 @@ namespace Agenda
 
         private ConexionDB mConexion;
         private List<ContactoModel> listaContactos;
+        private bool favorito = false;
+
+        String consultaNoFav = "select * from dbo.Contactos";
+        String consultaFav = "select * from dbo.Contactos where Favorito = 1";
 
         public MainWindow()
         {
@@ -43,10 +47,18 @@ namespace Agenda
         {
             listaContactos.Clear();
             SqlDataReader sqlDataReader = null;
-            String consulta = "select * from dbo.Contactos";
 
             if (mConexion.getConexion() != null)
             {
+                String consulta = "";
+                if (favToggle.IsChecked == true )
+                {
+                    consulta = consultaFav;
+                }
+                else 
+                {
+                    consulta = consultaNoFav;
+                }
                 SqlCommand sqlCommand = new SqlCommand(consulta);
                 sqlCommand.Connection = mConexion.getConexion();
                 sqlDataReader = sqlCommand.ExecuteReader();
@@ -151,6 +163,11 @@ namespace Agenda
             Telefono ventanaTelefonos = new Telefono(Id);
             ventanaTelefonos.ShowDialog();
             ventanaTelefonos.Owner = this;
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
     }
 }
