@@ -32,6 +32,7 @@ namespace Agenda
 
         public Formulario(int Id = 0)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             mConexion = new ConexionDB();
             InitializeComponent();
 

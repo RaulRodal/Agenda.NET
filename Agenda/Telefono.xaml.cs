@@ -30,6 +30,7 @@ namespace Agenda
 
         public Telefono(int Id)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             listaTelefonos = new List<TelefonoModel>();
             mConexion = new ConexionDB();
@@ -113,8 +114,6 @@ namespace Agenda
 
         private void Volver()
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             this.Hide();
         }
 

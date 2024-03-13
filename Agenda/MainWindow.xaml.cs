@@ -27,7 +27,7 @@ namespace Agenda
         private List<ContactoModel> listaContactos;
         public MainWindow()
         {
-
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             listaContactos = new List<ContactoModel>();
             mConexion = new ConexionDB();
             InitializeComponent();
@@ -90,7 +90,7 @@ namespace Agenda
             int Id = (int)((Button)sender).CommandParameter;
 
             Formulario pFormulario = new Formulario(Id);
-            pFormulario.Show();
+            pFormulario.ShowDialog();
 
             this.Close();
         }
@@ -104,16 +104,16 @@ namespace Agenda
             int Id = (int)((Button)sender).CommandParameter;
 
             Correo ventanaCorreos = new Correo(Id);
-            ventanaCorreos.Show();
-            this.Close();
+            ventanaCorreos.ShowDialog();
+            ventanaCorreos.Owner = this;
         }
         private void Button_Telefono(object sender, RoutedEventArgs e)
         {
             int Id = (int)((Button)sender).CommandParameter;
 
             Telefono ventanaTelefonos = new Telefono(Id);
-            ventanaTelefonos.Show();
-            this.Close();
+            ventanaTelefonos.ShowDialog();
+            ventanaTelefonos.Owner = this;
         }
     }
 }

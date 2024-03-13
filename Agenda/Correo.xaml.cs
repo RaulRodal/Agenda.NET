@@ -22,7 +22,6 @@ namespace Agenda
     /// </summary>
     public partial class Correo : Window
     {
-
         public int Id = 0;
         private ConexionDB mConexion;
         private List<CorreoModel> listaCorreos;
@@ -32,6 +31,7 @@ namespace Agenda
 
         public Correo(int Id)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             listaCorreos = new List<CorreoModel>();
             mConexion = new ConexionDB();
@@ -115,8 +115,6 @@ namespace Agenda
 
         private void Volver()
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             this.Hide();
         }
 
