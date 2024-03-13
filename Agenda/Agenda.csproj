@@ -5,11 +5,16 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>AgendaIco.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Models\email.png" />
     <None Remove="Models\phone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AgendaIco.ico" />
   </ItemGroup>
 
   <ItemGroup>
