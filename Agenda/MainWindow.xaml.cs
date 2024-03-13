@@ -23,8 +23,10 @@ namespace Agenda
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private ConexionDB mConexion;
         private List<ContactoModel> listaContactos;
+
         public MainWindow()
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -32,6 +34,8 @@ namespace Agenda
             mConexion = new ConexionDB();
             InitializeComponent();
 
+            // Suscribir el evento SelectionChanged del DataGridView
+            DG.SelectionChanged += DG_SelectionChanged;
             Refresh();
         }
 
@@ -61,9 +65,38 @@ namespace Agenda
                 DG.ItemsSource = listaContactos;
                 sqlDataReader.Close();
             }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DG_SelectionChanged(object sender, EventArgs e)
+        {
+            // Verificar si hay al menos una fila seleccionada
+            if (DG.SelectedItems.Count > 0)
+            {
+                // Cambiar el texto del botón y habilitarlo
+                if(DG.SelectedItems.Count > 1)
+                {
+                    btnEliminar.Content = "Eliminar contactos";
+                }
+                else
+                {
+
+                    btnEliminar.Content = "Eliminar contacto";
+                }
+
+                btnEliminar.Width = 150;
+                btnEliminar.IsEnabled = true;
+            }
+            else
+            {
+                btnEliminar.Content = "Seleciona uno o mas contactos";
+                btnEliminar.Width = 200;
+                // Si no hay ninguna fila seleccionada, deshabilitar el botón
+                btnEliminar.IsEnabled = false;
+            }
+        }
+
+        private void Button_Nuevo(object sender, RoutedEventArgs e)
         {
             Formulario pFormulario = new Formulario();
             pFormulario.Show();
@@ -73,17 +106,21 @@ namespace Agenda
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
             string sqlDelete = "delete from dbo.Contactos where ID = @IdContacto";
-            int Id = (int)((Button)sender).CommandParameter;
+            //int Id = (int)((Button)sender).CommandParameter;
 
-            if (mConexion.getConexion() != null)
+            foreach (ContactoModel contacto in DG.SelectedItems)
             {
-                SqlCommand sqlCommand = new SqlCommand(sqlDelete);
-                sqlCommand.Parameters.AddWithValue("@IdContacto", Id);
-                sqlCommand.Connection = mConexion.getConexion();
-                sqlCommand.ExecuteNonQuery();
+                if (mConexion.getConexion() != null)
+                {
+                    SqlCommand sqlCommand = new SqlCommand(sqlDelete);
+                    sqlCommand.Parameters.AddWithValue("@IdContacto", contacto.IdContacto);
+                    sqlCommand.Connection = mConexion.getConexion();
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             Refresh();
         }
+
 
         private void Button_Editar(object sender, RoutedEventArgs e)
         {

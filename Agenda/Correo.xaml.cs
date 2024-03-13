@@ -25,7 +25,6 @@ namespace Agenda
         public int Id = 0;
         private ConexionDB mConexion;
         private List<CorreoModel> listaCorreos;
-        string sqlInsertTelefono = "INSERT INTO dbo.Telefonos (ID_Contacto, Telefono) VALUES (@ID_Contacto, @Telefono)";
         string sqlInsertCorreo = "INSERT INTO dbo.Correos (ID_Contacto, Correo) VALUES (@ID_Contacto, @Correo)";
         string sqlDeleteCorreo = "delete from dbo.Correos where ID = @IdCorreo";
 
@@ -62,7 +61,7 @@ namespace Agenda
                     nombreContacto = sqlDataReader.GetString(0);
                 }
 
-                lblNombre.Text = "Telefono/s de " + nombreContacto;
+                lblNombre.Text = "Email/s de " + nombreContacto;
                 sqlDataReader.Close();
 
                 //obtener telefonos

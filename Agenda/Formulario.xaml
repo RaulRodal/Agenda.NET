@@ -26,11 +26,11 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
-        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="50" Width="200"></TextBox>
+        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="30" Width="200" VerticalContentAlignment="Center"></TextBox>
         <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
-        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="50" Width="200"></TextBox>
+        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="30" Width="200" VerticalContentAlignment="Center"></TextBox>
         <TextBlock x:Name="lblcomentario" Grid.Row="2" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
-        <TextBox x:Name="txtcomentario" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Height="125" Width="200"></TextBox>
+        <TextBox x:Name="txtcomentario" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Height="125" Width="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"></TextBox>
         <Button x:Name="btn" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Height="50" Width="120">Insertar contacto</Button>
     </Grid>
 </Window>

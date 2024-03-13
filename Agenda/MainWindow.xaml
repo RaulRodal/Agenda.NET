@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="400" Width="820" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,12 +19,14 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click">Nuevo</Button>
-        <Button Grid.Column="1" Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Refrescar">Refrescar</Button>
-        <DataGrid Name="DG" Style="{StaticResource DataGridStyle}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="28"> Agenda de contactos</TextBlock>
+        <Button Grid.Column="1" Grid.Row="0" Width="150" Height="50" HorizontalAlignment="Right" Click="Button_Nuevo">Nuevo contacto</Button>
+        <Button Name="btnEliminar" Grid.Column="1" Grid.Row="0" Width="200" Height="50"  HorizontalAlignment="Left" Click="Button_Delete">Selecciona uno o mas contactos</Button>
+        <DataGrid Name="DG" Style="{StaticResource DataGridStyle}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                  CellStyle="{StaticResource Body_Content_DataGrid_Centering}" HorizontalScrollBarVisibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Apellidos" Width="150" Binding="{Binding Apellidos}"></DataGridTextColumn>
@@ -32,26 +34,21 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Telefono">Telefonos</Button>
+                            <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Telefono" Height="40" Content="{StaticResource Phone}" Margin="5"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="70"  CommandParameter="{Binding IdContacto}" Click="Button_Correos">Correos</Button>
+                            <Button Width="70"  CommandParameter="{Binding IdContacto}" Click="Button_Correos" Height="40" Content="{StaticResource Email}" Margin="5"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Editar">Editar</Button>
-
-                                <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Delete">Eliminar</Button>
-
-                            </StackPanel>
+                            <Button Width="70" CommandParameter="{Binding IdContacto}" Click="Button_Editar" Height="40" Margin="5">Editar</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
