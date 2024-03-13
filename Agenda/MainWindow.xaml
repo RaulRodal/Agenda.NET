@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="820" ResizeMode="NoResize">
+        Title="MainWindow" Height="650" Width="820" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,13 +20,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="28"> Agenda de contactos</TextBlock>
-        <Button Grid.Column="1" Grid.Row="0" Width="150" Height="50" HorizontalAlignment="Right" Click="Button_Nuevo">Nuevo contacto</Button>
-        <Button Name="btnEliminar" Grid.Column="0" Grid.Row="2" Width="200" Height="50"  HorizontalAlignment="Left" Click="Button_Delete">Selecciona uno o mas contactos</Button>
-        <DataGrid Name="DG" Style="{StaticResource DataGridStyle}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="30" Margin="10"> Agenda de contactos</TextBlock>
+        <Button Grid.Column="1" Grid.Row="0" Width="150" Height="50" HorizontalAlignment="Right" FontSize="15" Margin="10" Click="Button_Nuevo">Nuevo contacto</Button>
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15">Buscar:</TextBlock>
+        <TextBox x:Name="searchBox" Grid.Column="1" Grid.Row="1" Height="30" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyUp="searchBox_KeyUp" />
+        <DataGrid Name="DG" Style="{StaticResource DataGridStyle}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                   CellStyle="{StaticResource Body_Content_DataGrid_Centering}" HorizontalScrollBarVisibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre}"></DataGridTextColumn>
@@ -55,7 +57,8 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="120,0,0,0">Mostrar solo favoritos</TextBlock>
-        <ToggleButton x:Name="favToggle" Grid.Column="2" Grid.Row="2" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ToggleButton_Click"></ToggleButton>
+        <Button Name="btnEliminar" Grid.Column="0" Grid.Row="3" Width="220" Height="50"  HorizontalAlignment="Left" FontSize="15" Margin="10" Click="Button_Delete">Selecciona uno o mas contactos</Button>
+        <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="110,0,0,0">Mostrar solo favoritos</TextBlock>
+        <ToggleButton x:Name="favToggle" Grid.Column="2" Grid.Row="3" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ToggleButton_Click" Margin="10"></ToggleButton>
     </Grid>
 </Window>

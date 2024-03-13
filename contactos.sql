@@ -11,7 +11,8 @@ CREATE TABLE Contactos (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(50),
     Apellidos VARCHAR(50),
-    Comentario VARCHAR(MAX)
+    Comentario VARCHAR(MAX),
+	Favorito BIT
 );
 
 -- Crear la tabla de teléfonos

@@ -27,8 +27,8 @@ namespace Agenda
         bool update = false;
         string sqlConsultaTodos = "select * from dbo.Contactos";
         string sqlConsultaUno = "select * from dbo.Contactos where ID = @IdContacto";
-        string sqlInsertContactos = "INSERT INTO dbo.Contactos (Nombre, Apellidos, Comentario) VALUES (@Nombre, @Apellidos, @Comentario)";
-        string sqlUpdate = "UPDATE dbo.Contactos SET Nombre= @Nombre, Apellidos = @Apellidos, Comentario = @Comentario WHERE ID = @IdContacto";
+        string sqlInsertContactos = "INSERT INTO dbo.Contactos (Nombre, Apellidos, Comentario, Favorito) VALUES (@Nombre, @Apellidos, @Comentario, @Favorito)";
+        string sqlUpdate = "UPDATE dbo.Contactos SET Nombre= @Nombre, Apellidos = @Apellidos, Comentario = @Comentario, Favorito = @Favorito WHERE ID = @IdContacto";
 
         public Formulario(int Id = 0)
         {
@@ -56,9 +56,16 @@ namespace Agenda
                         txtnombre.Text = sqlDataReader.GetString(1);
                         txtapellidos.Text = sqlDataReader.GetString(2);
                         txtcomentario.Text = sqlDataReader.GetString(3);
-
+                        if (sqlDataReader.GetBoolean(4))
+                        {
+                            // Hay que arreglar estop
+                            toggle.Content = true;
+                        }
+                        else
+                        {
+                            toggle.IsChecked = false;
+                        } 
                     }
-                    
                     sqlDataReader.Close();
                 }
             }
@@ -75,6 +82,14 @@ namespace Agenda
                     command.Parameters.AddWithValue("@Nombre", txtnombre.Text);
                     command.Parameters.AddWithValue("@Apellidos", txtapellidos.Text);
                     command.Parameters.AddWithValue("@Comentario", txtcomentario.Text);
+                    if (toggle.IsChecked == true)
+                    {
+                        command.Parameters.AddWithValue("@Favorito", 1);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@Favorito", 0);
+                    }
                     command.Parameters.AddWithValue("@IdContacto", Id);
 
                     command.ExecuteNonQuery();
@@ -87,7 +102,14 @@ namespace Agenda
                     command.Parameters.AddWithValue("@Nombre", txtnombre.Text);
                     command.Parameters.AddWithValue("@Apellidos", txtapellidos.Text);
                     command.Parameters.AddWithValue("@Comentario", txtcomentario.Text);
-
+                    if (toggle.IsChecked == true)
+                    {
+                        command.Parameters.AddWithValue("@Favorito", 1);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@Favorito", 0);
+                    }
                     command.ExecuteNonQuery();
                 }
             }

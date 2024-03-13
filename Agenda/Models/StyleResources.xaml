@@ -26,6 +26,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="MaxHeight" Value="50"/>
     </Style>
 
 
@@ -93,6 +94,8 @@
         </Setter>
     </Style>
 
+    
+    <!-- ToggleButton -->
     <Style TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>

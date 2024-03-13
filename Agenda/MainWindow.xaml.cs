@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Agenda.Models;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace Agenda
 {
@@ -80,6 +81,13 @@ namespace Agenda
 
         }
 
+        private void searchBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var filtered = listaContactos.Where(contacto => contacto.Nombre.StartsWith(searchBox.Text) || contacto.Apellidos.StartsWith(searchBox.Text) || contacto.Comentario.Contains(searchBox.Text));
+
+            DG.ItemsSource = filtered;
+        }
+
         private void DG_SelectionChanged(object sender, EventArgs e)
         {
             // Verificar si hay al menos una fila seleccionada
@@ -102,7 +110,7 @@ namespace Agenda
             else
             {
                 btnEliminar.Content = "Seleciona uno o mas contactos";
-                btnEliminar.Width = 200;
+                btnEliminar.Width = 220;
                 // Si no hay ninguna fila seleccionada, deshabilitar el botón
                 btnEliminar.IsEnabled = false;
             }
@@ -136,7 +144,7 @@ namespace Agenda
 
         private void Button_Editar(object sender, RoutedEventArgs e)
         {
-            int Id = (int)((Button)sender).CommandParameter;
+            int Id = (int)((System.Windows.Controls.Button)sender).CommandParameter;
 
             Formulario pFormulario = new Formulario(Id);
             pFormulario.ShowDialog();
@@ -150,7 +158,7 @@ namespace Agenda
         }
         private void Button_Correos(object sender, RoutedEventArgs e)
         {
-            int Id = (int)((Button)sender).CommandParameter;
+            int Id = (int)((System.Windows.Controls.Button)sender).CommandParameter;
 
             Correo ventanaCorreos = new Correo(Id);
             ventanaCorreos.ShowDialog();
@@ -158,7 +166,7 @@ namespace Agenda
         }
         private void Button_Telefono(object sender, RoutedEventArgs e)
         {
-            int Id = (int)((Button)sender).CommandParameter;
+            int Id = (int)((System.Windows.Controls.Button)sender).CommandParameter;
 
             Telefono ventanaTelefonos = new Telefono(Id);
             ventanaTelefonos.ShowDialog();
