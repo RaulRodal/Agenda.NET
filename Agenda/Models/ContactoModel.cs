@@ -12,6 +12,7 @@ namespace Agenda.Models
         public string? Nombre { get; set; }
         public string? Apellidos { get; set; }
         public string? Comentario { get; set; }
+        public bool? Favorito { get; set; } 
 
     }
 }

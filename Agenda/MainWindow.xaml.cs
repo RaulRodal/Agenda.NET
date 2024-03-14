@@ -19,14 +19,10 @@ using static MaterialDesignThemes.Wpf.Theme;
 using System.Data;
 using System.IO;
 using System.Reflection.Metadata;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iText.Html2pdf;
 using Microsoft.Win32;
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+
 using iText.Kernel.Pdf;
 using iText.Html2pdf;
-using PdfWriter = iText.Kernel.Pdf.PdfWriter;
 
 namespace Agenda
 {
@@ -35,11 +31,14 @@ namespace Agenda
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private ConexionDB mConexion;
         private List<ContactoModel> listaContactos;
         private List<ContactoModel> listaFiltrada;
         private bool favorito = false;
+
+        String consultaTelefonos = "select * from dbo.Telefonos where ID_Contacto = ";
+        String consultaCorreos = "select * from dbo.Correos where ID_Contacto = ";
 
         String consultaNoFav = "select * from dbo.Contactos";
         String consultaFav = "select * from dbo.Contactos where Favorito = 1";
@@ -54,6 +53,18 @@ namespace Agenda
             // Suscribir el evento SelectionChanged del DataGridView
             DG.SelectionChanged += DG_SelectionChanged;
             Refresh();
+
+
+            Timer.Tick += new EventHandler(Timer_Click);
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Start();
+        }
+
+        private void Timer_Click(object sender, EventArgs e)
+        {
+            DateTime d;
+            d = DateTime.Now;
+            hora.Text = d.Hour.ToString("D2") + ":" + d.Minute.ToString("D2") + ":" + d.Second.ToString("D2");
         }
 
         public void Refresh()
@@ -105,9 +116,6 @@ namespace Agenda
         private void Button_Informe(object sender, RoutedEventArgs e)
         {
 
-            String consultaTelefonos = "select * from dbo.Telefonos where ID_Contacto = ";
-            String consultaCorreos = "select * from dbo.Correos where ID_Contacto = ";
-
             // Parte HTML do Contacto 
             const String taboaContacto =
                 "<div>Nombre: @Nombre</div>" +
@@ -146,44 +154,14 @@ namespace Agenda
                 tableContacto = tableContacto.Replace("@Apellidos", contacto.Apellidos);
                 tableContacto = tableContacto.Replace("@Comentario", contacto.Comentario);
 
+                // Obtener lista de telefonos de un contacto
+                listaTelefonos = GetTelefonosContacto(contacto);
 
-                //Creacion lista telefonos
-                if (mConexion.getConexion() != null)
-                {
-                    SqlCommand sqlCommand = new SqlCommand(consultaTelefonos += contacto.IdContacto);
-                    sqlCommand.Connection = mConexion.getConexion();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                    while (sqlDataReader.Read())
-                    {
-                        MessageBox.Show("Hola " + contacto.IdContacto.ToString());
-                        TelefonoModel telefono = new TelefonoModel();
-                        telefono.IdTelefono = sqlDataReader.GetInt32(0);
-                        telefono.IdContacto = sqlDataReader.GetInt32(1);
-                        telefono.Telefono = sqlDataReader.GetString(2);
-                        listaTelefonos.Add(telefono);
+                // Obtener lista de correos de un contacto
+                listaCorreos = GetCorreosContacto(contacto);
 
-                       
-                    }
-                    sqlDataReader.Close();
-                }
-                //Creacion lista correos
-                if (mConexion.getConexion() != null)
-                {
-                    SqlCommand sqlCommand = new SqlCommand(consultaCorreos += contacto.IdContacto);
-                    sqlCommand.Connection = mConexion.getConexion();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                    while (sqlDataReader.Read())
-                    {
-                        CorreoModel correo = new CorreoModel();
-                        correo.IdCorreo = sqlDataReader.GetInt32(0);
-                        correo.IdContacto = sqlDataReader.GetInt32(1);
-                        correo.Correo = sqlDataReader.GetString(2);
-                        listaCorreos.Add(correo);
-                    }
-                    sqlDataReader.Close();
-                }
 
                 // Agregar todos los telefonos y correos
                 // Determine the length of the longer list
@@ -229,6 +207,55 @@ namespace Agenda
             }
         }
 
+        private List<TelefonoModel> GetTelefonosContacto(ContactoModel c)
+        {
+            List<TelefonoModel> listaTelefonos = new List<TelefonoModel>();
+            //Creacion lista telefonos
+            if (mConexion.getConexion() != null)
+            {
+                SqlCommand sqlCommand = new SqlCommand(consultaTelefonos + c.IdContacto);
+                sqlCommand.Connection = mConexion.getConexion();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    TelefonoModel telefono = new TelefonoModel();
+                    telefono.IdTelefono = sqlDataReader.GetInt32(0);
+                    telefono.IdContacto = sqlDataReader.GetInt32(1);
+                    telefono.Telefono = sqlDataReader.GetString(2);
+                    MessageBox.Show(telefono.Telefono);
+                    listaTelefonos.Add(telefono);
+                }
+                sqlDataReader.Close();
+                return listaTelefonos;
+            }
+            return null;
+        }
+
+        public List<CorreoModel> GetCorreosContacto(ContactoModel c)
+        {
+            List<CorreoModel> listaCorreos = new List<CorreoModel>();
+            //Creacion lista correos
+            if (mConexion.getConexion() != null)
+            {
+                SqlCommand sqlCommand = new SqlCommand(consultaCorreos + c.IdContacto);
+                sqlCommand.Connection = mConexion.getConexion();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    CorreoModel correo = new CorreoModel();
+                    correo.IdCorreo = sqlDataReader.GetInt32(0);
+                    correo.IdContacto = sqlDataReader.GetInt32(1);
+                    correo.Correo = sqlDataReader.GetString(2);
+                    listaCorreos.Add(correo);
+                }
+                sqlDataReader.Close();
+                return listaCorreos;
+            }
+            return null;
+        }
+
 
         private void DG_SelectionChanged(object sender, EventArgs e)
         {
@@ -238,21 +265,21 @@ namespace Agenda
                 // Cambiar el texto del botón y habilitarlo
                 if (DG.SelectedItems.Count > 1)
                 {
-                    btnEliminar.Content = "Eliminar contactos";
+                    txtbEliminar.Text = "Eliminar contactos";
                 }
                 else
                 {
 
-                    btnEliminar.Content = "Eliminar contacto";
+                    txtbEliminar.Text = "Eliminar contacto";
                 }
 
-                btnEliminar.Width = 150;
+                btnEliminar.Width = 180;
                 btnEliminar.IsEnabled = true;
             }
             else
             {
-                btnEliminar.Content = "Seleciona uno o mas contactos";
-                btnEliminar.Width = 220;
+                txtbEliminar.Text = "Seleciona uno o mas contactos";
+                btnEliminar.Width = 250;
                 // Si no hay ninguna fila seleccionada, deshabilitar el botón
                 btnEliminar.IsEnabled = false;
             }
@@ -262,8 +289,6 @@ namespace Agenda
         {
             Formulario pFormulario = new Formulario();
             pFormulario.ShowDialog();
-            pFormulario.Owner = Window.GetWindow(this);
-            this.Hide();
         }
         private void Button_Delete(object sender, RoutedEventArgs e)
         {
@@ -282,7 +307,43 @@ namespace Agenda
             }
             Refresh();
         }
+        private void Button_Duplicar(object sender, RoutedEventArgs e)
+        {
 
+            string sqlConsultaUno = "select * from dbo.Contactos where ID = @IdContacto";
+            string sqlInsertContactos = "INSERT INTO dbo.Contactos (Nombre, Apellidos, Comentario, Favorito) VALUES (@Nombre, @Apellidos, @Comentario, @Favorito)";
+
+            int Id = (int)((System.Windows.Controls.Button)sender).CommandParameter;
+
+            ContactoModel contacto = new ContactoModel();
+
+            if (mConexion.getConexion() != null)
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlConsultaUno);
+                sqlCommand.Parameters.AddWithValue("@IdContacto", Id);
+                sqlCommand.Connection = mConexion.getConexion();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+
+                while (sqlDataReader.Read())
+                {
+                    contacto.Nombre = sqlDataReader.GetString(1);
+                    contacto.Apellidos = sqlDataReader.GetString(2);
+                    contacto.Comentario = sqlDataReader.GetString(3);
+                    contacto.Favorito = sqlDataReader.GetBoolean(4);
+                }
+                sqlDataReader.Close();
+            }
+            using (SqlCommand command = new SqlCommand(sqlInsertContactos, mConexion.getConexion()))
+            {
+                command.Parameters.AddWithValue("@Nombre", contacto.Nombre);
+                command.Parameters.AddWithValue("@Apellidos", contacto.Apellidos);
+                command.Parameters.AddWithValue("@Comentario", contacto.Comentario);
+                command.Parameters.AddWithValue("@Favorito", contacto.Favorito);
+                command.ExecuteNonQuery();
+            }
+            Refresh();
+        }
 
         private void Button_Editar(object sender, RoutedEventArgs e)
         {
@@ -290,9 +351,8 @@ namespace Agenda
 
             Formulario pFormulario = new Formulario(Id);
             pFormulario.ShowDialog();
-            pFormulario.Owner = Window.GetWindow(this);
-            this.Hide();
         }
+        
 
         private void Button_Refrescar(object sender, RoutedEventArgs e)
         {
@@ -325,6 +385,11 @@ namespace Agenda
             base.OnClosed(e);
 
             Application.Current.Shutdown();
+        }
+
+        private void Button_Ayuda(object sender, RoutedEventArgs e)
+        {
+            Refresh();
         }
 
     }

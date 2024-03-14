@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="Formulario" Height="450" Width="800" Closing="Cerrar" ResizeMode="NoResize">
+        Title="Formulario" Height="400" Width="700" Closing="Cerrar" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,20 +19,34 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="lblnombre" Grid.Row="0" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Nombre:</TextBlock>
-        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Height="30" Width="200" VerticalContentAlignment="Center"></TextBox>
-        <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Apellidos:</TextBlock>
-        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Height="30" Width="200" VerticalContentAlignment="Center"></TextBox>
+        <TextBox x:Name="txtnombre" Grid.Row="0" Grid.Column="1" Height="30" Width="200" VerticalContentAlignment="Center" KeyUp="tb_KeyDown"></TextBox>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="*" Foreground="Red" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="10,0,0,35">
+            <TextBlock.ToolTip>
+                <ToolTip Placement="Right" Content="Campo obligatorio"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <TextBlock x:Name="txtbnombre" Grid.Row="0" Grid.Column="1" Height="30" Width="120" Margin="0,0,0,48" HorizontalAlignment="Right" Foreground="Red" Visibility="Collapsed" > Nombre obligatorio </TextBlock>
+        <TextBlock x:Name="lblapellidos"  Grid.Row="1" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0">Apellidos:</TextBlock>
+        <TextBox x:Name="txtapellidos" Grid.Row="1" Grid.Column="1" Height="30" Width="200" VerticalContentAlignment="Center" VerticalAlignment="Top" KeyUp="tb_KeyDown"></TextBox>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="*" Foreground="Red" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,-8">
+            <TextBlock.ToolTip>
+                <ToolTip Placement="Right" Content="Campo obligatorio"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <TextBlock x:Name="txtbapellidos" Grid.Row="0" Grid.Column="1" Height="30" Width="120" Margin="0,0,10,-10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="Red" Visibility="Collapsed">Apellidos obligatorios</TextBlock>
         <TextBlock x:Name="lblcomentario" Grid.Row="0" Grid.Column="2" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
-        <TextBox x:Name="txtcomentario" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Height="125" Width="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True"></TextBox>
+        <TextBox x:Name="txtcomentario" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Height="125" Width="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" KeyUp="tb_KeyDown" Margin="0,20,0,0"/>
         <TextBlock x:Name="lblfavorito" Grid.Row="2" Grid.Column="1" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0">Favorito:</TextBlock>
         <ToggleButton x:Name="toggle" Grid.Row="2" Grid.Column="1" Width="50" HorizontalAlignment="Right"></ToggleButton>
-        <Button x:Name="btn" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Click="Button_Click" Height="50" Width="150">Insertar contacto</Button>
+        <Button x:Name="btn" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Click="Button_Click" Height="50" Width="150">Insertar contacto</Button>
     </Grid>
 </Window>

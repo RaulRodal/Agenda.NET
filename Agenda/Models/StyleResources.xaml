@@ -2,8 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <Image x:Key="Phone" Height="30" Source="/Models/phone.png" x:Shared="False"/>
-    <Image x:Key="Email" Height="30" Source="/Models/email.png" x:Shared="False"/>
+    <Image x:Key="Phone" Height="23" Source="/Models/phone.png" x:Shared="False"/>
+    <Image x:Key="Email" Height="25" Source="/Models/email.png" x:Shared="False"/>
+    <Image x:Key="Reload" Height="30" Source="/Models/reload.png" x:Shared="False"/>
+    <Image x:Key="Duplicate" Height="25" Source="/Models/duplicate.png" x:Shared="False"/>
+    <BitmapImage x:Key="Trash" UriSource="/Models/trash.png" />
+    <BitmapImage x:Key="AddUser" UriSource="/Models/addUser.png" />
 
     <!-- Estilo para TextBox redondeadas-->
     <Style TargetType="{x:Type TextBox}">

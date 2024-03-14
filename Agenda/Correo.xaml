@@ -26,7 +26,8 @@
             <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="lblNombre" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" TextAlignment="Left" VerticalAlignment="Center"></TextBlock>
-        <TextBox x:Name="txtcorreo" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="110" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center"></TextBox>
+        <TextBox x:Name="emailTextBox" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="110" Height="30" KeyUp="tb_KeyDown" Margin="10,10,10,0" 
+                 VerticalContentAlignment="Center"/>
         <Button Grid.Row="1" Grid.Column="2" Click="Button_Guardar" HorizontalAlignment="Center" Height="30" Width="120" Margin="0,0,0,10">Guardar correo</Button>
         <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
                    CellStyle="{StaticResource Body_Content_DataGrid_Centering}" HorizontalScrollBarVisibility="Hidden">

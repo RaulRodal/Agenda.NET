@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Agenda.Models;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace Agenda
 {
@@ -83,16 +84,40 @@ namespace Agenda
                 sqlDataReader.Close();
             }
         }
+        private void tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                guardar();
+            }
+        }
+        public bool IsValidEmailAddress(string s)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            return regex.IsMatch(s);
+        }
 
         private void Button_Guardar(object sender, RoutedEventArgs e)
         {
+            guardar();
+        }
 
-            using (SqlCommand command = new SqlCommand(sqlInsertCorreo, mConexion.getConexion()))
+        private void guardar()
+        {
+
+            if (IsValidEmailAddress(emailTextBox.Text))
             {
-                command.Parameters.AddWithValue("@ID_Contacto", Id);
-                command.Parameters.AddWithValue("@Correo", txtcorreo.Text);
+                using (SqlCommand command = new SqlCommand(sqlInsertCorreo, mConexion.getConexion()))
+                {
+                    command.Parameters.AddWithValue("@ID_Contacto", Id);
+                    command.Parameters.AddWithValue("@Correo", emailTextBox.Text);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Correo introducido incorrecto");
             }
             Refresh();
         }

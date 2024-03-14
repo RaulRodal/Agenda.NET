@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Agenda.Models;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Agenda
 {
@@ -71,9 +72,51 @@ namespace Agenda
             }
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void tb_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter)
+            {
+                guardarInsertar();
+            }
+        }
+
+        private bool VerificarTextBox(TextBox textBox)
+        {
+            bool ret = true;
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                ret = false;
+            }
+            else if (textBox.Text.Trim().Length == 0)
+            {
+                ret = false;
+            }
+            return ret;
+           
+        }
+
+        private void guardarInsertar()
+        {
+            if (VerificarTextBox(txtnombre) == false)
+            {
+                txtbnombre.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
+                txtbnombre.Visibility = Visibility.Collapsed;
+            }
+
+            if (VerificarTextBox(txtapellidos) == false)
+            {
+                txtbapellidos.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
+                txtbapellidos.Visibility = Visibility.Collapsed;
+            }
 
             if (update)
             {
@@ -115,6 +158,12 @@ namespace Agenda
             }
             Volver();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            guardarInsertar();
+        }
+
+
         private void Cerrar(object sender, CancelEventArgs e)
         {
             Volver();
@@ -123,7 +172,6 @@ namespace Agenda
         private void Volver()
         {
             this.Hide();
-            Owner.Show();
         }
 
     }

@@ -26,7 +26,8 @@
             <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="lblNombre" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" TextAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBlock>
-        <TextBox x:Name="txttelefono" Grid.Row="0" Grid.Column="2" Height="30" HorizontalAlignment="Center" Width="110" Margin="10,10,10,0" VerticalContentAlignment="Center"></TextBox>
+        <TextBox x:Name="textBox" Grid.Row="0" Grid.Column="2" Height="30" HorizontalAlignment="Center" Width="110" KeyUp="tb_KeyDown" Margin="10,10,10,0"
+                 VerticalContentAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged"/>
         <Button Grid.Row="1" Grid.Column="2" Click="Button_Guardar" Height="30" HorizontalAlignment="Center" Width="120" Margin="0,0,0,10">Guardar telefono</Button>
         <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" 
                    CellStyle="{StaticResource Body_Content_DataGrid_Centering}" HorizontalScrollBarVisibility="Hidden">

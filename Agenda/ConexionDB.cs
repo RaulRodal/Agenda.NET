@@ -25,7 +25,7 @@ namespace Agenda
                 "; Password = " + password + ";" +
                 "Initial Catalog = " + database + ";" +
                 "Server = " + servidor + ";";
-           cadeaConexion = "Data Source=RODAL\\SQLEXPRESS;Initial Catalog=Agenda;Integrated Security=True";
+           //cadeaConexion = "Data Source=RODAL\\SQLEXPRESS;Initial Catalog=Agenda;Integrated Security=True";
         }
 
         public SqlConnection getConexion()

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Agenda.Models;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace Agenda
 {
@@ -35,6 +36,7 @@ namespace Agenda
             listaTelefonos = new List<TelefonoModel>();
             mConexion = new ConexionDB();
             this.Id = Id;
+
 
             Refresh();
 
@@ -84,19 +86,49 @@ namespace Agenda
             }
         }
 
+        private void tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                guardar();
+            }
+        }
+
+        private bool VerificarTextBox(TextBox textBox)
+        {
+            bool ret = true;
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                ret = false;
+            }
+            else if (textBox.Text.Trim().Length == 0)
+            {
+                ret = false;
+            }
+            return ret;
+
+        }
+
         private void Button_Guardar(object sender, RoutedEventArgs e)
         {
+            guardar();
+        }
 
-            using (SqlCommand command = new SqlCommand(sqlInsertTelefono, mConexion.getConexion()))
+        private void guardar()
+        {
+            if (VerificarTextBox(textBox))
             {
-                command.Parameters.AddWithValue("@ID_Contacto", Id);
-                command.Parameters.AddWithValue("@Telefono", txttelefono.Text);
+                using (SqlCommand command = new SqlCommand(sqlInsertTelefono, mConexion.getConexion()))
+                {
+                    command.Parameters.AddWithValue("@ID_Contacto", Id);
+                    command.Parameters.AddWithValue("@Telefono", textBox.Text);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
             }
             Refresh();
         }
-
         private void Button_Eliminar(object sender, RoutedEventArgs e)
         {
             int Id = (int)((Button)sender).CommandParameter;
@@ -111,6 +143,32 @@ namespace Agenda
             Refresh();
         }
 
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Permitir solo números y el signo '+'
+            if (!char.IsDigit(e.Text, 0) && e.Text != "+")
+            {
+                e.Handled = true;
+            }
+
+            // Permitir el signo '+' solo si es el primer carácter
+            TextBox textBox = sender as TextBox;
+            if (e.Text == "+" && textBox.Text.Length != 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Verificar si el texto supera los 12 caracteres
+            if (textBox.Text.Length > 12)
+            {
+                MessageBox.Show("El numero no puede superar los 12 caracteres.");
+                textBox.Text = textBox.Text.Substring(0, 12);
+                textBox.Select(textBox.Text.Length, 0); // Colocar el cursor al final
+            }
+        }
 
         private void Volver()
         {

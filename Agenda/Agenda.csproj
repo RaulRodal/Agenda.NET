@@ -9,8 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Models\addUser.png" />
+    <None Remove="Models\duplicate.png" />
     <None Remove="Models\email.png" />
     <None Remove="Models\phone.png" />
+    <None Remove="Models\reload.png" />
+    <None Remove="Models\reload2.png" />
+    <None Remove="Models\trash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +33,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Models\addUser.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Models\duplicate.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Models\email.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Models\phone.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Models\reload.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Models\trash.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
