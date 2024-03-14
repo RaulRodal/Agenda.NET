@@ -11,9 +11,7 @@ namespace Agenda.Models
         public int IdContacto { get; set; }
         public string? Nombre { get; set; }
         public string? Apellidos { get; set; }
-        public string? Telefono { get; set; }
-        public string? Correo { get; set; }
-        public string Comentario { get; set; }
+        public string? Comentario { get; set; }
 
     }
 }

@@ -122,9 +122,8 @@ namespace Agenda
 
         private void Volver()
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             this.Hide();
+            Owner.Show();
         }
 
     }

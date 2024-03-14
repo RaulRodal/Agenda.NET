@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="820" ResizeMode="NoResize">
+        Title="Agenda" Height="650" Width="820" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -58,6 +58,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="btnEliminar" Grid.Column="0" Grid.Row="3" Width="220" Height="50"  HorizontalAlignment="Left" FontSize="15" Margin="10" Click="Button_Delete">Selecciona uno o mas contactos</Button>
+        <Button Name="btnInforme" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="50" HorizontalAlignment="Center" FontSize="15" Margin="10" Click="Button_Informe">Extraer informe</Button>
         <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="110,0,0,0">Mostrar solo favoritos</TextBlock>
         <ToggleButton x:Name="favToggle" Grid.Column="2" Grid.Row="3" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ToggleButton_Click" Margin="10"></ToggleButton>
     </Grid>
