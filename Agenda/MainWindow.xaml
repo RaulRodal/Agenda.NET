@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agenda"
         mc:Ignorable="d"
-        Title="Agenda" Height="700" Width="850" ResizeMode="NoResize">
+        Title="Agenda" Height="700" Width="840" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             
             <Calendar Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Left" Margin="0,-15,0,0"/>
-            <TextBlock x:Name="hora" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center"    VerticalAlignment="Center" FontSize="30" Margin="10"> Agenda de contactos</TextBlock>
+            <TextBlock x:Name="hora" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Margin="10"> Agenda </TextBlock>
             <Button Grid.Column="1" Grid.Row="0" Width="170" Height="50" HorizontalAlignment="Right" FontSize="15" Margin="10" Click="Button_Nuevo">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="50" Source="{StaticResource AddUser}"/>
@@ -79,10 +79,10 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Name="btnEliminar" Grid.Column="0" Grid.Row="3" Width="250" Height="50"  HorizontalAlignment="Left" FontSize="15" Margin="10" Padding="10" Click="Button_Delete">
+            <Button Name="btnEliminar" Grid.Column="0" Grid.Row="3" Width="260" Height="50"  HorizontalAlignment="Left" FontSize="15" Margin="10" Padding="10" Click="Button_Delete">
                 <StackPanel Orientation="Horizontal">
                     <Image Margin="5" Height="25" Source="{StaticResource Trash}"/>
-                    <TextBlock x:Name="txtbEliminar" VerticalAlignment="Center"> Selecciona uno o mas contactos</TextBlock>
+                    <TextBlock x:Name="txtbEliminar" VerticalAlignment="Center" Margin="0,0,0,0"> Selecciona uno o mas contactos</TextBlock>
                 </StackPanel>
             </Button>
             <Button Name="btnInforme" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="50" HorizontalAlignment="Center" FontSize="15" Margin="10" Click="Button_Informe">Extraer informe</Button>

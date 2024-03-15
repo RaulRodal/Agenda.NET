@@ -62,7 +62,7 @@ namespace Agenda
                     nombreContacto = sqlDataReader.GetString(0);
                 }
 
-                lblNombre.Text = "Email/s de " + nombreContacto;
+                lblNombre.Text = "Correo/s de " + nombreContacto;
                 sqlDataReader.Close();
 
                 //obtener telefonos
@@ -114,6 +114,7 @@ namespace Agenda
 
                     command.ExecuteNonQuery();
                 }
+                emailTextBox.Text = "";
             }
             else
             {

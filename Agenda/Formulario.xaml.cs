@@ -31,11 +31,13 @@ namespace Agenda
         string sqlInsertContactos = "INSERT INTO dbo.Contactos (Nombre, Apellidos, Comentario, Favorito) VALUES (@Nombre, @Apellidos, @Comentario, @Favorito)";
         string sqlUpdate = "UPDATE dbo.Contactos SET Nombre= @Nombre, Apellidos = @Apellidos, Comentario = @Comentario, Favorito = @Favorito WHERE ID = @IdContacto";
 
+
         public Formulario(int Id = 0)
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             mConexion = new ConexionDB();
             InitializeComponent();
+
 
             this.Id = Id;
             if (this.Id != 0)
@@ -57,15 +59,6 @@ namespace Agenda
                         txtnombre.Text = sqlDataReader.GetString(1);
                         txtapellidos.Text = sqlDataReader.GetString(2);
                         txtcomentario.Text = sqlDataReader.GetString(3);
-                        if (sqlDataReader.GetBoolean(4))
-                        {
-                            // Hay que arreglar estop
-                            toggle.Content = true;
-                        }
-                        else
-                        {
-                            toggle.IsChecked = false;
-                        } 
                     }
                     sqlDataReader.Close();
                 }

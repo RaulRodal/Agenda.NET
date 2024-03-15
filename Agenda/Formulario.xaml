@@ -46,7 +46,7 @@
         <TextBlock x:Name="lblcomentario" Grid.Row="0" Grid.Column="2" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">Comentario:</TextBlock>
         <TextBox x:Name="txtcomentario" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Height="125" Width="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" KeyUp="tb_KeyDown" Margin="0,20,0,0"/>
         <TextBlock x:Name="lblfavorito" Grid.Row="2" Grid.Column="1" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0">Favorito:</TextBlock>
-        <ToggleButton x:Name="toggle" Grid.Row="2" Grid.Column="1" Width="50" HorizontalAlignment="Right"></ToggleButton>
+        <ToggleButton x:Name="toggle" Grid.Row="2" Grid.Column="1" Width="50" HorizontalAlignment="Right" IsChecked="True"/>
         <Button x:Name="btn" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Click="Button_Click" Height="50" Width="150">Insertar contacto</Button>
     </Grid>
 </Window>

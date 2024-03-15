@@ -37,11 +37,9 @@ namespace Agenda
             mConexion = new ConexionDB();
             this.Id = Id;
 
-
             Refresh();
 
         }
-
 
         private void Refresh()
         {
@@ -126,6 +124,7 @@ namespace Agenda
 
                     command.ExecuteNonQuery();
                 }
+                textBox.Text = "";
             }
             Refresh();
         }

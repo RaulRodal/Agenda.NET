@@ -24,6 +24,9 @@ using Microsoft.Win32;
 using iText.Kernel.Pdf;
 using iText.Html2pdf;
 
+using System.Diagnostics;
+
+
 namespace Agenda
 {
     /// <summary>
@@ -31,6 +34,7 @@ namespace Agenda
     /// </summary>
     public partial class MainWindow : Window
     {
+
         System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         private ConexionDB mConexion;
         private List<ContactoModel> listaContactos;
@@ -43,8 +47,12 @@ namespace Agenda
         String consultaNoFav = "select * from dbo.Contactos";
         String consultaFav = "select * from dbo.Contactos where Favorito = 1";
 
+        String sqlTelefonoLike = "SELECT * FROM dbo.Telefonos WHERE columna LIKE '%@Letra%'";
+        String sqlCorreoLike = "SELECT * FROM dbo.Correos WHERE columna LIKE '%@Letra%'";
+
         public MainWindow()
         {
+
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             listaContactos = new List<ContactoModel>();
             mConexion = new ConexionDB();
@@ -107,6 +115,7 @@ namespace Agenda
 
         private void searchBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
+
             var filtered = listaContactos.Where(contacto => contacto.Nombre.ToLower().Contains(searchBox.Text.ToLower()) || contacto.Apellidos.ToLower().Contains(searchBox.Text.ToLower()) || contacto.Comentario.ToLower().Contains(searchBox.Text.ToLower()));
             listaFiltrada = filtered.ToList();
             DG.ItemsSource = filtered;
@@ -223,7 +232,6 @@ namespace Agenda
                     telefono.IdTelefono = sqlDataReader.GetInt32(0);
                     telefono.IdContacto = sqlDataReader.GetInt32(1);
                     telefono.Telefono = sqlDataReader.GetString(2);
-                    MessageBox.Show(telefono.Telefono);
                     listaTelefonos.Add(telefono);
                 }
                 sqlDataReader.Close();
@@ -269,17 +277,16 @@ namespace Agenda
                 }
                 else
                 {
-
                     txtbEliminar.Text = "Eliminar contacto";
                 }
 
-                btnEliminar.Width = 180;
+                btnEliminar.Width = 170;
                 btnEliminar.IsEnabled = true;
             }
             else
             {
                 txtbEliminar.Text = "Seleciona uno o mas contactos";
-                btnEliminar.Width = 250;
+                btnEliminar.Width = 260;
                 // Si no hay ninguna fila seleccionada, deshabilitar el botón
                 btnEliminar.IsEnabled = false;
             }
@@ -389,7 +396,29 @@ namespace Agenda
 
         private void Button_Ayuda(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            // Ruta del archivo CHM
+            string chmFileName = "manualdeusuario.chm";
+
+            // Ruta relativa al directorio de la aplicación
+            //string chmFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\", chmFileName);
+            string chmFilePath = @"..\..\..\" + chmFileName;
+
+            // Verificar si el archivo CHM existe
+            if (!System.IO.File.Exists(chmFilePath))
+            {
+                MessageBox.Show("El archivo de ayuda no se encuentra en la ruta especificada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                // Iniciar el visor de ayuda de Windows (hh.exe) y pasar la ruta del archivo CHM como argumento
+                Process.Start("hh.exe", chmFilePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el archivo de ayuda: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
     }

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda", "Agenda\Agenda.csproj", "{54CD822D-A5E2-4D3B-A382-71B52FE5F5CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda", "Agenda\Agenda.csproj", "{54CD822D-A5E2-4D3B-A382-71B52FE5F5CF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalador agenda", "Instalador agenda\Instalador agenda.vdproj", "{495892B9-55F4-4F21-A03F-6E338A60F0D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{54CD822D-A5E2-4D3B-A382-71B52FE5F5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CD822D-A5E2-4D3B-A382-71B52FE5F5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CD822D-A5E2-4D3B-A382-71B52FE5F5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495892B9-55F4-4F21-A03F-6E338A60F0D0}.Debug|Any CPU.ActiveCfg = Debug
+		{495892B9-55F4-4F21-A03F-6E338A60F0D0}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
