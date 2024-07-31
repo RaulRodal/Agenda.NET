@@ -1,4 +1,5 @@
-Aplicacion de agenda de contactos para windows realizada en .NET
+
+Aplicacion de agenda de contactos para windows realizada en .NET con SQL Server
 
 ### Screenshots
 ![Login](img/agendaPrincipal.png?raw=true "Principal")
